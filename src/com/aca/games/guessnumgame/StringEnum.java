@@ -1,4 +1,4 @@
-package com.aca.guessnumgame;
+package com.aca.games.guessnumgame;
 
 public enum StringEnum {LESS,MORE,EQUAL
 }
