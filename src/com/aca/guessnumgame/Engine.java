@@ -1,4 +1,4 @@
-package com.aca.guessnumGame;
+package com.aca.guessnumgame;
 
 import java.util.*;
 
