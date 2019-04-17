@@ -88,7 +88,8 @@ public class TicTacToeEngine {
             temp++;
         }
         board = new GameMark[boardSize][boardSize];
-        diagRight = diagLeft = new String[1 + (boardSize - 3) * 2];
+        diagLeft = new String[1 + (boardSize - 3) * 2];
+        diagRight = new String[1 + (boardSize - 3) * 2];
         rowCounter = new String[boardSize];
         colCounter = new String[boardSize];
         temp = 0;
