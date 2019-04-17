@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToeEngine {
 
+    private static int counterX, counterO;
     private static int row, col;
     private static int boardSize, winCells;
     private static GameMark[][] board;
@@ -30,12 +31,19 @@ public class TicTacToeEngine {
             } while (!check(row, col));
             board[row][col] = turn;
             printBoard();
-            turn = turn == GameMark.X ? GameMark.O : GameMark.X;
+            if (turn == GameMark.X) {
+                turn = GameMark.O;
+                counterX++;
+            } else {
+                turn = GameMark.X;
+                counterO++;
+            }
         } while (!gameOver(row, col, turn));
         turn = turn == GameMark.X ? GameMark.O : GameMark.X;
-        if (draw == boardSize * boardSize) System.out.println("GAME OVER IT'S A DRAW.");
+        if (draw == boardSize * boardSize) System.out.println("GAME OVER \nIT'S A DRAW.");
         else
             System.out.println("GAME OVER \nCongrats!!! \nThe player '" + turn + "' win the game!");
+        System.out.println("Player X made " + counterX + " moves.\nPlayer O made " + counterO + " moves.");
     }
 
     private static boolean check(int row, int col) {
@@ -96,6 +104,7 @@ public class TicTacToeEngine {
             }
         }
     }
+
     private static boolean gameOver(int row, int col, GameMark player) {
         int diagL = boardSize - 3 + row - col;
         int diagR = 2 * boardSize - row - col - 4;
@@ -109,7 +118,7 @@ public class TicTacToeEngine {
         colCounter[col] = colCounter[col].substring(0, row) + player + colCounter[col].substring(row + 1);
         if (diagL >= 0 && diagL < diagLeft.length) {
             diagLeft[diagL] = diagLeft[diagL].substring(0, col) + player + diagLeft[diagL].substring(col + 1);
-            System.out.println("diagLeft[ " + diagL + " ]" + " = " + diagLeft[diagL]);
+            //System.out.println("diagLeft[ " + diagL + " ]" + " = " + diagLeft[diagL]);
             if (diagLeft[diagL].contains(winX) || diagLeft[diagL].contains(winO))
                 return true;
         }
@@ -122,6 +131,7 @@ public class TicTacToeEngine {
         }
         return (rowCounter[row].contains(winX) || rowCounter[row].contains(winO) || colCounter[col].contains(winX) || colCounter[col].contains(winO));
     }
+
     private static void printBoard() {
         System.out.println();
         for (int i = 0; i < boardSize; i++) {
